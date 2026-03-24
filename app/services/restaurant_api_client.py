@@ -1,20 +1,21 @@
-api_key = "ZZSTO04KMZDL5HPL2DQKQNJBT1LOXUKASMIJNKJ5KPNLLY5F"
+api_key = "5ZZEZEVUGGB52RLGPMBHTUQH4EE5YY35EHXNKNK2R3W4OOVI"
 import requests
 class RestaurantApiClient:
     def __init__(self, api_key):
-        self.base_url = "https://api.foursquare.com/v3/places/search"
+        self.base_url = "https://places-api.foursquare.com/places/search"
         self.api_key = api_key
 
-    def search_restaurants(self, location, radius=1000, limit=10):
+    def search_restaurants(self, location, cuisine_type, limit=10):
         headers = {
             "Accept": "application/json",
-            "Authorization": self.api_key
+            "Authorization": f"Bearer {self.api_key}",
+            "X-Places-Api-Version": "2025-06-17"
         }
+
         params = {
-            "query": "restaurant",
-            "ll": location,
-            "radius": radius,
-            "limit": limit
+            "query": cuisine_type,
+            "near": location,
+            "limit": limit,
         }
 
         try:
