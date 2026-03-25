@@ -1,5 +1,6 @@
 class Restaurant:
-    def __init__(self, name, location, distance, cuisine_type, telephone=None):
+    def __init__(self, fsq_place_id, name, location, distance, cuisine_type, telephone=None):
+        self.fsq_place_id = fsq_place_id
         self.name = name
 
         self.location = location

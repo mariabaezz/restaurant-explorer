@@ -20,13 +20,14 @@ class restaurantSearchService:
     def transform_response(self, response):
         restaurants = []
         for item in response["results"]:
+            fsq_place_id=item['fsq_place_id'],
             name = item['name']
             location = item['location']['formatted_address']
             cuisine_type = item['categories'][0]['short_name']
             distance = item.get('distance', 'N/A')
             telephone = item.get('tel', 'N/A')
             
-            restaurants.append(Restaurant(name=name, location=location, cuisine_type=cuisine_type, distance=distance, telephone=telephone))
+            restaurants.append(Restaurant(fsq_place_id=fsq_place_id, name=name, location=location, cuisine_type=cuisine_type, distance=distance, telephone=telephone))
         return restaurants
 
     def order_by_distance(self, restaurants):
@@ -34,4 +35,10 @@ class restaurantSearchService:
             if restaurant.distance == 'N/A':
                 restaurant.distance = float('inf')
         return sorted(restaurants, key=lambda x: x.distance)
+    
+    def order_by_rating(self, restaurants):
+        for restaurant in restaurants:
+            if restaurant.rating == 'N/A':
+                restaurant.rating = 0.0
+        return sorted(restaurants, key=lambda x: x.rating, reverse=True)
     
