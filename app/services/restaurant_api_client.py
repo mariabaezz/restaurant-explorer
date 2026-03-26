@@ -1,5 +1,8 @@
-api_key = "5ZZEZEVUGGB52RLGPMBHTUQH4EE5YY35EHXNKNK2R3W4OOVI"
 import requests
+import os
+from dotenv import load_dotenv
+load_dotenv()
+api_key = os.getenv("FOURSQUARE_API_KEY")
 class RestaurantApiClient:
     def __init__(self, api_key):
         self.base_url = "https://places-api.foursquare.com/places/search"
