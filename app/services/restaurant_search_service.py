@@ -38,7 +38,7 @@ class restaurantSearchService:
     
     def order_by_rating(self, restaurants):
         for restaurant in restaurants:
-            if restaurant.rating == 'N/A':
+            if restaurant.rating == 'N/A' or restaurant.rating is None:
                 restaurant.rating = 0.0
         return sorted(restaurants, key=lambda x: x.rating, reverse=True)
     

@@ -15,7 +15,7 @@ class FavoritesManager:
 
     def save_favorites(self, filename="data/favorites.json"):
         with open(filename, "w", encoding="utf-8") as f:
-            json.dump([restaurant.__dict__ for restaurant in self.favorites], f, indent=4, ensure_ascii=False)
+            json.dump([restaurant.to_dict() for restaurant in self.favorites], f, indent=4, ensure_ascii=False)
 
     def load_favorites(self, filename="data/favorites.json"):
         try:

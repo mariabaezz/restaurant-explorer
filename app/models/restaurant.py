@@ -11,3 +11,14 @@ class Restaurant:
 
     def __repr__(self):
         return f"Restaurant(name={self.name}, location={self.location}, distance={self.distance}, cuisine_type={self.cuisine_type}, telephone={self.telephone}, rating={self.rating})"
+    
+    def to_dict(self):
+        return {
+            "fsq_place_id": self.fsq_place_id,
+            "name": self.name,
+            "location": self.location,
+            "distance": self.distance,
+            "cuisine_type": self.cuisine_type,
+            "telephone": self.telephone,
+            "rating": self.rating
+        }
